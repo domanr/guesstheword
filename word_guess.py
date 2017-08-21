@@ -53,7 +53,7 @@ def check_letter(letter, puzzle):
 
 
 def display_puzzle(selected_puzzle):
-    print('Category: ' + selected_puzzle['category'] + ' (' + str(len(selected_puzzle['puzzle'])) + ' letters)')
+    print('Category: ' + selected_puzzle['category'])
     displayed = ''
     for i in range(0, len(selected_puzzle['puzzle'])):
         if selected_puzzle['result'][i]:
