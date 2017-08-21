@@ -21,7 +21,11 @@ def draw_puzzle(puzzles):
 def init_result(selected_puzzle):
     result = []
     for i in range(0, len(selected_puzzle['puzzle'])):
-        result.append(False)
+        # Space shall not be taken into consideration, let's mark it as true
+        if selected_puzzle['puzzle'][i] == ' ':
+            result.append(True)
+        else:
+            result.append(False)
     selected_puzzle['result'] = result
 
 
@@ -61,11 +65,14 @@ def main():
         puzzle = draw_puzzle(puzzles)
         init_result(puzzle)
         failures = 0
+        letters_tried = []
 
         while False in puzzle['result']:
             print('\nFailures: ' + str(failures))
+            print('Letters you tried: ' + ', '.join(letters_tried))
             display_puzzle(puzzle)
             letter = get_input()
+            letters_tried.append(letter)
             contains = check_letter(letter, puzzle)
             if not contains:
                 print('The word does not contain letter ' + letter)
