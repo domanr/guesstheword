@@ -1,7 +1,7 @@
 import csv
 import random
 import re
-
+import os
 
 def load_puzzles(filename):
     with open(filename) as puzzles_file:
@@ -64,8 +64,6 @@ def display_puzzle(selected_puzzle):
 
 
 def main():
-    print('Welcome to the Guess the word game!')
-
     puzzles = load_puzzles('puzzles.csv')
     play_again = 'y'
 
@@ -76,6 +74,7 @@ def main():
         letters_tried = []
 
         while False in puzzle['result']:
+            print('Welcome to the Guess the word game!')
             print('\nFailures: ' + str(failures))
             print('Letters you tried: ' + ', '.join(letters_tried))
             display_puzzle(puzzle)
@@ -87,6 +86,7 @@ def main():
                 failures += 1
             if failures > 5:
                 break
+            os.system('cls')
 
         if False in puzzle['result']:
             print('\nGame over! The word was: ' + puzzle['puzzle'])
@@ -94,6 +94,6 @@ def main():
             print('\nCongrats, you won! The word was: ' + puzzle['puzzle'])
         play_again = raw_input('Would you like to play again (y/n)? ')
         play_again = play_again[0].lower()
-        print('\n\n')
+        os.system('cls')
 
 main()
