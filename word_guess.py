@@ -52,25 +52,33 @@ def display_puzzle(selected_puzzle):
 
 
 def main():
+    print('Welcome to the Guess the word game!')
+
     puzzles = load_puzzles('puzzles.csv')
-    puzzle = draw_puzzle(puzzles)
-    init_result(puzzle)
-    failures = 0
+    play_again = 'y'
 
-    while False in puzzle['result']:
-        print('\nFailures: ' + str(failures))
-        display_puzzle(puzzle)
-        letter = get_input()
-        contains = check_letter(letter, puzzle)
-        if not contains:
-            print('The word does not contain letter ' + letter)
-            failures += 1
-        if failures > 5:
-            break
+    while play_again == 'y':
+        puzzle = draw_puzzle(puzzles)
+        init_result(puzzle)
+        failures = 0
 
-    if False in puzzle['result']:
-        print('Game over! The word was: ' + puzzle['puzzle'])
-    else:
-        print('You won! The solution is: ' + puzzle['puzzle'])
+        while False in puzzle['result']:
+            print('\nFailures: ' + str(failures))
+            display_puzzle(puzzle)
+            letter = get_input()
+            contains = check_letter(letter, puzzle)
+            if not contains:
+                print('The word does not contain letter ' + letter)
+                failures += 1
+            if failures > 5:
+                break
+
+        if False in puzzle['result']:
+            print('\nGame over! The word was: ' + puzzle['puzzle'])
+        else:
+            print('\nCongrats, you won! The word was: ' + puzzle['puzzle'])
+        play_again = raw_input('Would you like to play again (y/n)? ')
+        play_again = play_again[0].lower()
+        print('\n\n')
 
 main()
