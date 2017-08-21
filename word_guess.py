@@ -30,7 +30,15 @@ def init_result(selected_puzzle):
 
 
 def get_input():
-    letter = raw_input('Enter a letter: ')
+    while True:
+        letter = raw_input('Enter a letter: ')
+        if len(letter) < 1:
+            print('Nothing was entered, please try again!')
+            continue
+        if not letter.isalpha():
+            print('This is not a letter, please try again!')
+            continue
+        break
     return letter[0]
 
 
