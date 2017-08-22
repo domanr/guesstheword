@@ -3,6 +3,7 @@ import random
 import re
 import os
 
+
 def load_puzzles(filename):
     with open(filename) as puzzles_file:
         puzzle_reader = csv.reader(puzzles_file, delimiter=',')
@@ -84,7 +85,7 @@ def main():
             if not contains:
                 print('The word does not contain letter ' + letter)
                 failures += 1
-            if failures > 5:
+            if failures > 9:
                 break
             os.system('cls')
 
